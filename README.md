@@ -5,3 +5,4 @@
 - [Rapier Demos](https://rapier.rs/demos3d/index.html)
 - [physics with rapier and three](https://github.com/bobbyroe/physics-with-rapier-and-three)
 - [Adding Physics to Three.js with Rapier](https://www.youtube.com/watch?v=agNZuqehHtg)
+- [Using gltf/glb with Rapier](https://github.com/SohomNandy/Physics_with_Rapier/tree/main)

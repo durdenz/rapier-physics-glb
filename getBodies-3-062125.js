@@ -7,7 +7,7 @@ const geometries = [];
 const materials = [];
 
 const glbLoader = new GLTFLoader();
-const glbPaths = ["models/CG.glb","models/duck.glb"];
+const glbPaths = ["models/CG.glb"];
 
 async function loadGLTFModels() {
   const promises = glbPaths.map((path) =>
@@ -43,14 +43,11 @@ async function loadGLTFModels() {
 await loadGLTFModels();
 
 function getGeometry(size) {
-  const randomBody = Math.floor(Math.random() * geometries.length);
+  const randomBody = 0;
   const randomGeo = geometries[randomBody];
-  const mat = materials[randomBody];
-
   const geo = randomGeo.clone();
   geo.scale(size, size, size);
-
-  return { geometry: geo, material: mat };
+  return geo;
 }
 
 function getBody(RAPIER, world) {
@@ -61,10 +58,9 @@ function getBody(RAPIER, world) {
   let y = Math.random() * range - range * 0.5 + 3;
   let z = Math.random() * range - range * 0.5;
 
-  const body = getGeometry(size);
+  const geometry = getGeometry(size);
 
-  const geometry = body.geometry;
-  const material = body.material;
+  const material = materials[0];
 
   const mesh = new THREE.Mesh(geometry, material);
 
