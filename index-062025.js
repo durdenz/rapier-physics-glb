@@ -8,7 +8,7 @@ import { UnrealBloomPass } from "jsm/postprocessing/UnrealBloomPass.js";
 const w = window.innerWidth;
 const h = window.innerHeight;
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, w / h, 0.9, 1000);
+const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
 camera.position.z = 5;
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: RapierCanvas });
 renderer.setSize(w, h);
@@ -27,7 +27,7 @@ const composer = new EffectComposer(renderer);
 composer.addPass(renderScene);
 composer.addPass(bloomPass);
 
-const numBodies = 20;
+const numBodies = 100;
 const bodies = [];
 for (let i = 0; i < numBodies; i++) {
   const body = getBody(RAPIER, world);
@@ -38,15 +38,9 @@ for (let i = 0; i < numBodies; i++) {
 const mouseBall = getMouseBall(RAPIER, world);
 scene.add(mouseBall.mesh);
 
-
-
-
-
-const rectLight = new THREE.RectAreaLight( 0xffffff, 3,  3, 3 );
-rectLight.position.set( 0, 5, 0.2 );
-rectLight.lookAt( 0, 0, 0 );
-scene.add( rectLight )
-
+const hemiLight = new THREE.HemisphereLight(0x00bbff, 0xaa00ff);
+hemiLight.intensity = 0.2;
+scene.add(hemiLight);
 
 function animate() {
   requestAnimationFrame(animate);

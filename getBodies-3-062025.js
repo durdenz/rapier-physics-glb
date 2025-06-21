@@ -50,9 +50,9 @@ function getGeometry(size) {
 }
 
 function getBody(RAPIER, world) {
-  const size = 0.1 + Math.random() * 0.15;
+  const size = 0.1 + Math.random() * 0.25;
   const range = 12;
-  const density = size  * 0.5;
+  const density = size  * 1.0;
   let x = Math.random() * range - range * 0.5;
   let y = Math.random() * range - range * 0.5 + 3;
   let z = Math.random() * range - range * 0.5;
@@ -67,12 +67,9 @@ function getBody(RAPIER, world) {
   let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
           .setTranslation(x, y, z);
   let rigid = world.createRigidBody(rigidBodyDesc);
-  let colliderDesc = RAPIER.ColliderDesc.cuboid(.7,.2,.2).setDensity(density);
-  let colliderDesc2 = RAPIER.ColliderDesc.cuboid(.2,.7,.2).setDensity(density);
-  let colliderDesc3 = RAPIER.ColliderDesc.cuboid(.2,.2,.7).setDensity(density);
+  // let colliderDesc = RAPIER.ColliderDesc.ball(size).setDensity(density);
+  let colliderDesc = RAPIER.ColliderDesc.cuboid(0.7,0.7,0.7).setDensity(density);
   world.createCollider(colliderDesc, rigid);
-  world.createCollider(colliderDesc2, rigid);
-  world.createCollider(colliderDesc3, rigid);
 
   function update() {
     rigid.resetForces(true); 
@@ -105,7 +102,7 @@ function getBody(RAPIER, world) {
     let dynamicCollider = RAPIER.ColliderDesc.ball(mouseSize * 3.0);
     world.createCollider(dynamicCollider, mouseRigid);
     function update (mousePos) {
-      mouseRigid.setTranslation({ x: mousePos.x * window.innerWidth / 350, y: mousePos.y * 3.75, z: 0.2 });
+      mouseRigid.setTranslation({ x: mousePos.x * 5, y: mousePos.y * 5, z: 0.2 });
       let { x, y, z } = mouseRigid.translation();
       mouseMesh.position.set(x, y, z);
     }
