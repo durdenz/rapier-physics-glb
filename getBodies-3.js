@@ -7,7 +7,7 @@ const geometries = [];
 const materials = [];
 
 const glbLoader = new GLTFLoader();
-const glbPaths = ["models/CG.glb","models/duck.glb"];
+const glbPaths = ["models/CG.glb","models/CG2.glb","models/duck.glb"];
 
 async function loadGLTFModels() {
   const promises = glbPaths.map((path) =>
